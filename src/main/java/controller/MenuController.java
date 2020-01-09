@@ -23,6 +23,8 @@ public class MenuController {
     }
 
     private void chooseOption() {
+        consoleCleaner.clearScreen();
+        menuPrinter.printHeader();
         menuPrinter.printOptions();
         int option = inputGetter.promptForInteger();
         switch (option) {
@@ -38,6 +40,7 @@ public class MenuController {
     }
 
     private List<Player> askForPlayers() {
+        consoleCleaner.clearScreen();
         messagePrinter.promptForNumberOfPlayers();
         int numberOfPlayers = -1;
         while(numberOfPlayers < 2 || numberOfPlayers > 4) {
@@ -70,6 +73,7 @@ public class MenuController {
     }
 
     private void printHelp() {
+        consoleCleaner.clearScreen();
         menuPrinter.printRules();
         messagePrinter.pressAnyKey();
         inputGetter.promptForInput();
