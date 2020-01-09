@@ -6,7 +6,7 @@ public class InputGetter {
 
     private Scanner scanner = new Scanner(System.in);
 
-    private String promptForInput() {
+    String promptForInput() {
         String input = scanner.nextLine();
         return input;
     }
