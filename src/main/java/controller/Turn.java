@@ -1,7 +1,9 @@
-package model;
+package controller;
 
 import controller.CardComparatorImpl;
 import controller.InputGetter;
+import model.Card;
+import model.Player;
 import view.CardPrinter;
 import view.ConsoleCleaner;
 import view.MessagePrinter;
@@ -16,11 +18,11 @@ class Turn {
     private ConsoleCleaner consoleCleaner = new ConsoleCleaner();
     private InputGetter inputGetter = new InputGetter();
 
-    public Turn(List<Player> players) {
+    Turn(List<Player> players) {
         this.players = players;
     }
 
-    public void playTurn(int playerIndex) {
+    void playTurn(int playerIndex) {
         if (players.stream().filter(Player::isActive).count() > 1) {
             getCardFromPreviousPlayer(playerIndex);
 
@@ -28,7 +30,7 @@ class Turn {
                 if (areDiscardableCardsPresent(playerIndex)) {
                     consoleCleaner.clearScreen();
                     messagePrinter.displayPlayerTurn(players.get(playerIndex));
-                    inputGetter.g
+                    inputGetter.promptForInput();
                     messagePrinter.pressAnyKey();
                     discardTwoCards(playerIndex);
                     promptForShuffle(playerIndex);
