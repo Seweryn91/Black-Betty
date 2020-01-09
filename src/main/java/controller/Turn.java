@@ -30,8 +30,8 @@ class Turn {
                 if (areDiscardableCardsPresent(playerIndex)) {
                     consoleCleaner.clearScreen();
                     messagePrinter.displayPlayerTurn(players.get(playerIndex));
-                    inputGetter.promptForInput();
                     messagePrinter.pressAnyKey();
+                    inputGetter.promptForInput();
                     discardTwoCards(playerIndex);
                     promptForShuffle(playerIndex);
                 }
