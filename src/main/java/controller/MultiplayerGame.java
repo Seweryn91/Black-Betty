@@ -1,7 +1,6 @@
 package controller;
 
 import model.Deck;
-import model.Game;
 import model.Player;
 import view.MessagePrinter;
 
