@@ -1,10 +1,13 @@
 package controller;
 
+import view.MessagePrinter;
+
 import java.util.Scanner;
 
 public class InputGetter {
 
     private Scanner scanner = new Scanner(System.in);
+    private MessagePrinter messagePrinter = new MessagePrinter();
 
     String promptForInput() {
         String input = scanner.nextLine();
@@ -25,7 +28,7 @@ public class InputGetter {
         try {
             integer = Integer.parseInt(promptForInput());
         } catch (NumberFormatException e) {
-            System.out.println("Provided input is not a number. Try again");
+            messagePrinter.printError_NaN();
             promptForInput();
         }
         return integer;
