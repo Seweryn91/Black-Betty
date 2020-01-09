@@ -1,7 +1,6 @@
 package controller;
 
 import model.Player;
-import model.MultiplayerGame;
 import view.ConsoleCleaner;
 import view.MenuPrinter;
 import view.MessagePrinter;

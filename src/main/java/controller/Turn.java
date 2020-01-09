@@ -14,18 +14,22 @@ class Turn {
     private MessagePrinter messagePrinter = new MessagePrinter();
     private CardPrinter cardPrinter = new CardPrinter();
     private ConsoleCleaner consoleCleaner = new ConsoleCleaner();
+    private InputGetter inputGetter = new InputGetter();
 
-    Turn(List<Player> players) {
+    public Turn(List<Player> players) {
         this.players = players;
     }
 
-    void playTurn(int playerIndex) {
+    public void playTurn(int playerIndex) {
         if (players.stream().filter(Player::isActive).count() > 1) {
             getCardFromPreviousPlayer(playerIndex);
 
             if (areDiscardableCardsInGame()) {
                 if (areDiscardableCardsPresent(playerIndex)) {
+                    consoleCleaner.clearScreen();
                     messagePrinter.displayPlayerTurn(players.get(playerIndex));
+                    inputGetter.g
+                    messagePrinter.pressAnyKey();
                     discardTwoCards(playerIndex);
                     promptForShuffle(playerIndex);
                 }
