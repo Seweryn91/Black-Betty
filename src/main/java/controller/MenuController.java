@@ -2,6 +2,7 @@ package controller;
 
 import model.Player;
 import model.MultiplayerGame;
+import view.ConsoleCleaner;
 import view.MenuPrinter;
 import view.MessagePrinter;
 
@@ -13,9 +14,11 @@ public class MenuController {
     private MenuPrinter menuPrinter = new MenuPrinter();
     private MessagePrinter messagePrinter = new MessagePrinter();
     private InputGetter inputGetter = new InputGetter();
+    private ConsoleCleaner consoleCleaner = new ConsoleCleaner();
 
 
     public void launchMenu() {
+        consoleCleaner.clearScreen();
         menuPrinter.printHeader();
         chooseOption();
     }
