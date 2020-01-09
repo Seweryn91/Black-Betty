@@ -1,6 +1,8 @@
-package model;
+package controller;
 
-import controller.Croupier;
+import model.Deck;
+import model.Game;
+import model.Player;
 import view.MessagePrinter;
 
 import java.util.List;
