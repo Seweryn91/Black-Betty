@@ -84,4 +84,8 @@ public class MessagePrinter {
     public void printDraw() {
         System.out.println("No discardable cards are present in game! Game is draw. ");
     }
+
+    public void printError_NaN() {
+        System.out.println("Provided input is not a number. Try again");
+    }
 }
