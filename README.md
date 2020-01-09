@@ -12,6 +12,6 @@ Game runs until there's last player with cards on his/her hand. That's the loose
 
 In rare case, players have cards on their hands, but none of them can match the other. In that situation game is draw.
 
-#HOW TO RUN
+### HOW TO RUN
 Just open terminal, and type command
-$> mvn clean compile exec:java
+> mvn clean compile exec:java
