@@ -36,6 +36,7 @@ class Turn {
                     promptForShuffle(playerIndex);
                 }
                 else {
+                    consoleCleaner.clearScreen();
                     cardPrinter.printHand(cardListToMap(players.get(playerIndex).getHand().getCards()));
                     messagePrinter.printError_noDiscardableCards();
                     promptForShuffle(playerIndex);}
