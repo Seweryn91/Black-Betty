@@ -1,7 +1,5 @@
 package controller;
 
-import controller.CardComparatorImpl;
-import controller.InputGetter;
 import model.Card;
 import model.Player;
 import view.CardPrinter;
@@ -27,8 +25,11 @@ class Turn {
             getCardFromPreviousPlayer(playerIndex);
 
             if (areDiscardableCardsInGame()) {
-                if (areDiscardableCardsPresent(playerIndex)) {
+                if (areDiscardableCardsInHand(playerIndex)) {
                     consoleCleaner.clearScreen();
+                    for (Player p : players) {
+                        messagePrinter.showPlayersHandSize(p);
+                    }
                     messagePrinter.displayPlayerTurn(players.get(playerIndex));
                     messagePrinter.pressAnyKey();
                     inputGetter.promptForInput();
@@ -37,12 +38,14 @@ class Turn {
                 }
                 else {
                     consoleCleaner.clearScreen();
+                    for (Player p : players) {
+                        messagePrinter.showPlayersHandSize(p);
+                    }
                     cardPrinter.printHand(cardListToMap(players.get(playerIndex).getHand().getCards()));
                     messagePrinter.printError_noDiscardableCards();
                     promptForShuffle(playerIndex);}
-            }
+            } else draw();
         }
-        else draw();
     }
 
     private void draw() {
@@ -51,6 +54,8 @@ class Turn {
         }
         consoleCleaner.clearScreen();
         messagePrinter.printDraw();
+        messagePrinter.pressAnyKey();
+        inputGetter.promptForInput();
     }
 
     private void getCardFromPreviousPlayer(int currentPlayerIndex){
@@ -75,7 +80,7 @@ class Turn {
         giversCards.remove(0);
     }
 
-    private boolean areDiscardableCardsPresent(int currentPlayerIndex) {
+    private boolean areDiscardableCardsInHand(int currentPlayerIndex) {
         List<Card> cards = players.get(currentPlayerIndex).getHand().getCards();
         for (int i = 0; i < cards.size(); i++) {
             for (int j = i+1; j < cards.size(); j++) {
@@ -90,7 +95,7 @@ class Turn {
         return false;
     }
 
-    private Card chooseCard (Map < Integer, Card > handMap){
+    private Card chooseCard(Map < Integer, Card > handMap){
         InputGetter inputGetter = new InputGetter();
         int cardChosenIndex = -1;
         while(cardChosenIndex < 0 || cardChosenIndex >= handMap.size()) {
@@ -99,7 +104,7 @@ class Turn {
         return handMap.get(cardChosenIndex);
     }
 
-    private Map<Integer, Card> cardListToMap (List < Card > cards) {
+    private Map<Integer, Card> cardListToMap(List < Card > cards) {
         Map<Integer, Card> handMap = new TreeMap<>();
         for (int i = 0; i < cards.size(); i++) {
             handMap.put(i, cards.get(i));
