@@ -8,16 +8,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
-public class Croupier {
+class Croupier {
 
     private Deck deck;
     private List<Player> players;
 
-    public Croupier(Deck deck, List<Player> players) {
+    Croupier(Deck deck, List<Player> players) {
         this.deck = deck; this.players = players;
     }
 
-    public void dealCards() {
+    void dealCards() {
         List<Card> playableDeck = deck.init();
         Collections.shuffle(playableDeck);
 
