@@ -7,6 +7,12 @@ import java.util.Map;
 
 public class CardPrinter {
 
+    private static final String ANSI_RESET  = "\u001B[0m";
+    private static final String ANSI_RED    = "\u001B[31m";
+    private static final String ANSI_GREEN  = "\u001B[32m";
+    private static final String ANSI_BLACK  = "\u001B[30m";
+    private static final String ANSI_BG_WHITE = "\u001B[47m";
+
     private char getSuitPictogram(Suit suit) {
        switch (suit) {
            case SPADES:
@@ -20,7 +26,7 @@ public class CardPrinter {
            case JOKER:
                return 'J';
            default:
-               return '\uD83C'; //albo uDCCF
+               return '\uD83C';
        }
     }
 
@@ -45,25 +51,31 @@ public class CardPrinter {
             return sb.toString();
     }
 
-    char getCardBack() {
-        return '\u9608';
-    }
-
     public void printHand(Map<Integer, Card> handMap) {
         StringBuilder cardFaces = new StringBuilder();
-        char pipe = '|';
-        String top = " ___";
+        String pipe = ANSI_BG_WHITE + ANSI_BLACK + "|" + ANSI_RESET;
+        String top = ANSI_BG_WHITE + ANSI_BLACK + " ___" + ANSI_RESET;
         cardFaces.append(top.repeat(handMap.keySet().size()));
-        cardFaces.append('\n');
+        cardFaces.append(ANSI_BG_WHITE).append(" ").append('\n');
+
         for (int i = 0; i < handMap.keySet().size(); i++) {
             Card card = handMap.get(i);
             Suit suit = card.getSuit();
             char suitChar = getSuitPictogram(suit);
             int value = card.getValue();
             String valueSymbol = getValueSymbol(value);
-            cardFaces.append(pipe).append(valueSymbol).append(suitChar);
+            cardFaces.append(pipe);
+            cardFaces.append(ANSI_BG_WHITE);
+            if (suit.equals(Suit.HEARTS) || suit.equals(Suit.DIAMONDS)) {
+                cardFaces.append(ANSI_RED);
+            } else if (suit.equals(Suit.SPADES) || suit.equals(Suit.CLUBS)) {
+                cardFaces.append(ANSI_BLACK);
+            } else {
+                cardFaces.append(ANSI_GREEN);
+            }
+            cardFaces.append(valueSymbol).append(suitChar);
         }
-        cardFaces.append(pipe).append('\n');
+        cardFaces.append(pipe).append('\n').append(ANSI_RESET);
 
         for (int i = 0; i < handMap.keySet().size(); i++) {
             if (i < 10) cardFaces.append("  ").append(i).append(" ");
