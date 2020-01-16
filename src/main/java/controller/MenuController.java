@@ -18,20 +18,20 @@ public class MenuController {
 
     public void launchMenu() {
         consoleCleaner.clearScreen();
-        menuPrinter.printHeader();
         chooseOption();
     }
 
     private void chooseOption() {
-        consoleCleaner.clearScreen();
         menuPrinter.printHeader();
         menuPrinter.printOptions();
         int option = inputGetter.promptForInteger();
         switch (option) {
             case 0:
                 startGame();
+                chooseOption();
             case 1:
                 printHelp();
+                chooseOption();
             case 2:
                 exit();
             default:
