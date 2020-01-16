@@ -4,7 +4,7 @@ import view.MessagePrinter;
 
 import java.util.Scanner;
 
-public class InputGetter {
+class InputGetter {
 
     private Scanner scanner = new Scanner(System.in);
     private MessagePrinter messagePrinter = new MessagePrinter();
@@ -14,7 +14,7 @@ public class InputGetter {
         return input;
     }
 
-    public boolean promptForShuffle() {
+    boolean promptForShuffle() {
         String input = promptForInput();
         String inputUppercase = input.toUpperCase();
         if (inputUppercase.equals("Y") || inputUppercase.equals("YES")) return true;
@@ -23,7 +23,7 @@ public class InputGetter {
         return false;
     }
 
-    public int promptForInteger() {
+    int promptForInteger() {
         int integer = -1;
         try {
             integer = Integer.parseInt(promptForInput());
