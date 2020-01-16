@@ -35,15 +35,15 @@ class Turn {
                     inputGetter.promptForInput();
                     discardTwoCards(playerIndex);
                     promptForShuffle(playerIndex);
-                }
-                else {
+                } else {
                     consoleCleaner.clearScreen();
                     for (Player p : players) {
                         messagePrinter.showPlayersHandSize(p);
                     }
                     cardPrinter.printHand(cardListToMap(players.get(playerIndex).getHand().getCards()));
                     messagePrinter.printError_noDiscardableCards();
-                    promptForShuffle(playerIndex);}
+                    promptForShuffle(playerIndex);
+                }
             } else draw();
         }
     }
@@ -52,6 +52,7 @@ class Turn {
         for (Player p : players) {
             if (p.isActive()) { p.setActive(false); }
         }
+
         consoleCleaner.clearScreen();
         messagePrinter.printDraw();
         messagePrinter.pressAnyKey();
@@ -61,12 +62,14 @@ class Turn {
     private void getCardFromPreviousPlayer(int currentPlayerIndex){
         Player activePlayer = players.get(currentPlayerIndex);
         Player previousPlayer;
+
         if (currentPlayerIndex == 0) {
             previousPlayer = players.get(players.size() - 1);
         } else {
             previousPlayer = players.get(currentPlayerIndex - 1);
         }
-        if(previousPlayer.getHand().getCards().size() > 0) {
+
+        if (previousPlayer.getHand().getCards().size() > 0) {
             giveCardToPlayer(previousPlayer, activePlayer);
         }
     }
