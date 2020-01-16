@@ -21,9 +21,6 @@ public class MultiplayerGame implements Game {
             for (int i = 0; i < players.size(); i++) {
                 if (players.get(i).isActive()) {
                     turn.playTurn(i);
-                    for (Player p : players) { ;
-                        messagePrinter.showPlayersHandSize(p);
-                    }
                 }
 
                 for (Player p : players) {
@@ -38,7 +35,6 @@ public class MultiplayerGame implements Game {
                 name.ifPresent(messagePrinter::displayLooserName);
             }
         }
-
     }
 
     private boolean isMoreThanOnePlayerActive(List<Player> players){
